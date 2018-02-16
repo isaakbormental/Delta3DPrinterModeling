@@ -1,7 +1,5 @@
 function q = IK(pos,robot)
     
-
-    
     a1x = pos(1) + robot.r;
     a1y = pos(2);
     a1z = pos(3) + robot.tool_offset;
