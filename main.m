@@ -1,7 +1,10 @@
-% LALAL TODO: Define robot structure
-% Init commit
+% Advanced Robotics Manipulation
+% Delta Parallel Robot team assignment
+% Dayanov Nikita, Ostankovich Vladislav, Bortnikov Mikhail, Innopolis 2018
 
-% forwardKinematics(5)
+%% Robot model description
+
+
 
 robot.r = 0.1; % radius of moving platform
 robot.tool_offset = 0; % End-tool offset from moving platform
