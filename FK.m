@@ -1,6 +1,6 @@
-function T = FK(q,robot)
+function pos = FK(q,robot)
 
+% 404 Not Found
 
-    T = [];
 end
 

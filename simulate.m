@@ -22,20 +22,26 @@ shaft_e = [
 
 for i = 0:1/fps:5 % Timestamps
     
-    plotCircle(0, 0, 0, robot.R, [1 0.6 0]);
+    % Bottom plate:
+    plotCircle(0, 0, 0, robot.R, [1 0.6 0]); 
     hold on;
     grid on;
+    % Top plate:
+    plotCircle(0, 0, robot.shaft, robot.R, [1 0.6 0]); 
+    
+    % 3 Shafts:
     plot3([shaft_s(1,1) shaft_e(1,1)],[shaft_s(2,1) shaft_e(2,1)], [shaft_s(3,1) shaft_e(3,1)], 'g', 'LineWidth', 5);
     plot3([shaft_s(1,2) shaft_e(1,2)],[shaft_s(2,2) shaft_e(2,2)], [shaft_s(3,2) shaft_e(3,2)], 'g', 'LineWidth', 5);
     plot3([shaft_s(1,3) shaft_e(1,3)],[shaft_s(2,3) shaft_e(2,3)], [shaft_s(3,3) shaft_e(3,3)], 'g', 'LineWidth', 5);
 
-    %Transition of top platform through time
+    % Transition of top platform through time:
     px = r*cos(w*i);
     py = r*sin(w*i);
     
-    plotCircle(px, py, pz, robot.r, [0 0 1]);
+    % Moving plate of end-effector:
+    plotCircle(px, py, pz+robot.tool_offset, robot.r, [0 0 1]);
     
-    % Links
+    % Links:
     a1x = px + robot.r;
     a1y = py;
     a1z = pz + robot.tool_offset;
@@ -72,11 +78,18 @@ for i = 0:1/fps:5 % Timestamps
         c1x c1y c1z;
         ]';
 
+    % 3 links:
     plot3([link_s(1,1) link_e(1,1)],[link_s(2,1) link_e(2,1)], [link_s(3,1) link_e(3,1)], 'r', 'LineWidth', 5);
     plot3([link_s(1,2) link_e(1,2)],[link_s(2,2) link_e(2,2)], [link_s(3,2) link_e(3,2)], 'r', 'LineWidth', 5);
     plot3([link_s(1,3) link_e(1,3)],[link_s(2,3) link_e(2,3)], [link_s(3,3) link_e(3,3)], 'r', 'LineWidth', 5);
-    scatter3([a2x b2x c2x], [a2y b2y c2y], [a2z b2z c2z], [100, 100, 100], [0,0,0], 'filled');
     
+    % Connection points on shafts and moving platform:
+    scatter3([a2x b2x c2x], [a2y b2y c2y], [a2z b2z c2z], [100, 100, 100], [0,0,0], 'filled');
+    scatter3([a1x b1x c1x], [a1y b1y c1y], [a1z b1z c1z], [100, 100, 100], [0,0,0], 'filled');
+    
+    % End-effector:
+    scatter3(px, py, pz, 50, 'filled');
+
     hold off;
     pause(1/fps);
     
