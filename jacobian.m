@@ -12,5 +12,14 @@ J3_inv = [diff(q1,z) diff(q2,z) diff(q3,z) 0 0 0]'
 
 J_inv = [simplify(J1_inv), simplify(J2_inv), simplify(J3_inv)]
 
-end
+%% Forward kinematics in symbolic form
+[x,y,z] = solve([q1, q2, q3], [x y z]); % Leads to multiple solutions
 
+syms q1 q2 q3
+J1 = [diff(x(1),q3) diff(y(1),q1) diff(z(1),q1) 0 0 0]'
+J2 = [diff(x(1),q2) diff(y(1),q2) diff(z(1),q2) 0 0 0]'
+J3 = [diff(x(1),q3) diff(y(1),q3) diff(z(1),q3) 0 0 0]'
+
+J = [simplify(J1), simplify(J2), simplify(J3)]
+
+end
